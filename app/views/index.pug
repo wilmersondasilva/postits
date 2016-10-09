@@ -1,0 +1,31 @@
+html(ng-app='postits')
+	head
+		meta(charset='utf-8')
+		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+		title Postits
+		link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic')
+		link(rel="stylesheet" href='http://fonts.googleapis.com/css?family=Englebert')
+		link(rel='stylesheet' href='assets/libs/normalize.css/normalize.css')
+		link(rel='stylesheet' href='assets/libs/milligram/dist/milligram.min.css')
+		link(rel='stylesheet' href='assets/css/components.css')
+		link(rel='stylesheet' href='assets/css/utils.css')
+	body(ng-controller='homeCtrl')
+		.container
+			h1.text-center Postits 
+
+			.clearfix
+				button.float-right(ng-click='addNote()') New PostIt
+
+		.container.notes
+			.note(ng-repeat='note in notes | orderBy:"-updatedAt"' ng-class='$odd ? "note-type-b" : "note-type-a"')
+				textarea(ng-model='note.content' ng-focus='focusNewNote(note)' ng-blur='blurNewNote(note)').note-content.text-center
+			
+
+		//Scripts
+		script(src='assets/libs/angular/angular.min.js')
+		script(src='assets/libs/angular-resource/angular-resource.min.js')
+		script(src='assets/js/module.js')
+		script(src='assets/js/constants.js')
+		script(src='assets/js/services.js')
+		script(src='assets/js/controllers.js')
+
