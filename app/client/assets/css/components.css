@@ -106,11 +106,21 @@ input[type='search']:focus {
 	.notes {
 		width: 235px;
 	}
+
+	form {
+		width: 100%;
+	}
 }
 
 @media (min-width: 660px) {
 	.notes {
 		width: 510px;
+	}
+}
+
+@media (min-width: 642px) {
+	form {
+		width: 460px;
 	}
 }
 

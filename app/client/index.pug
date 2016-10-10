@@ -1,8 +1,8 @@
 html(ng-app='postits')
 	head
+		title Postits
 		meta(charset='utf-8')
 		meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
-		title Postits
 		link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic')
 		link(rel="stylesheet" href='http://fonts.googleapis.com/css?family=Englebert')
 		link(rel='stylesheet' href='assets/libs/normalize.css/normalize.css')
@@ -13,10 +13,10 @@ html(ng-app='postits')
 		.container
 			h1.text-center Postits 
 
-			.row
-				form.column.column-60
-					input(type='search' placeholder='Search Postit...' ng-model='noteFilter')
-				button.float-right.column.column-offset-20.column-20(ng-click='addNote()') New PostIt
+			form.float-left
+				input(type='search' placeholder='Search Postit...' ng-model='noteFilter')
+			.clearfix
+				button.float-right(ng-click='addNote()') New PostIt
 
 		.notes
 			label(ng-if='!notes.length') No postits yet :( <br> Click in 'NEW POSTIT' to start

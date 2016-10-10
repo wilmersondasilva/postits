@@ -1,9 +1,11 @@
-Post = require('../models/').Post
+Note = require('../models/').Note
 
 module.exports = {
 
+	// CRUD Operations
+
 	list(req, res) {
-		Post.findAll()
+		Note.findAll()
 			.then(function(posts) {
 				res.status(200).json(posts)
 			})
@@ -13,7 +15,7 @@ module.exports = {
 	},
 
 	get(req, res) {
-		Post.findById(req.params.id)
+		Note.findById(req.params.id)
 			.then(function(post) {
 				if (!post) {
 					res.status(404).json({ error: 'Object Not Found.' })
@@ -29,9 +31,9 @@ module.exports = {
 
 	create(req, res) {
 		console.log(req.body)
-		Post.create(req.body)
-			.then(function(newPost) {
-				res.status(200).json(newPost)
+		Note.create(req.body)
+			.then(function(newNote) {
+				res.status(200).json(newNote)
 			})
 			.catch(function(error) {
 				res.status(500).json(error)
@@ -39,9 +41,9 @@ module.exports = {
 	},
 
 	update(req, res) {
-		Post.update(req.body, { where: { id: req.params.id } })
-			.then(function(updatedPost) {
-				res.status(200).json(updatedPost)
+		Note.update(req.body, { where: { id: req.params.id } })
+			.then(function(updatedNote) {
+				res.status(200).end();
 			})
 			.catch(function(error) {
 				res.status(500).json(error)
@@ -49,9 +51,9 @@ module.exports = {
 	},
 
 	delete(req, res) {
-		Post.destroy({ where: { id: req.params.id } })
-			.then(function(deletedPost) {
-				res.status(200).json(deletedPost)
+		Note.destroy({ where: { id: req.params.id } })
+			.then(function(deletedNote) {
+				res.status(204).end(); // Code 204: No Content
 			})
 			.catch(function(error) {
 				res.status(500).json(error)

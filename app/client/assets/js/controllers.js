@@ -4,31 +4,34 @@ angular.module('postits')
 
 	function homeCtrl($scope, noteService) {
 
-		listNotes();
+		listNotes(); // List all notes
 
 		$scope.addNote = function() {
-			$scope.notes = [0].concat($scope.notes);
-			$scope.notes[0] = {};
+			delete $scope.noteFilter;
+			$scope.notes = [0].concat($scope.notes); // Faster than to use 'unshift' method
+			$scope.notes[0] = {}; // Insert element in the start of array
 		}
 
 		$scope.blurNote = function(note) {
 
-			if (!note.content && !note.id) {
+			if (!note.content && !note.id) { // New note with no content must be removed from array
 				$scope.notes.splice(0, 1);
 			}
 
-			if (!note.content && note.id) {
+			if (!note.content && note.id) { // Old note with no content must be removed from database
 				removeNote(note);
 			}
 
-			if (note.content && !note.id) {
+			if (note.content && !note.id) { // New note with content must be saved
 				saveNote(note);
 			}
 
-			if (note.content && note.id) {
+			if (note.content && note.id) { // Old note with content must be updated
 				updateNote(note);
 			}
 		}
+
+		// CRUD Operations
 
 		function listNotes() {
 			noteService.list()
@@ -43,8 +46,7 @@ angular.module('postits')
 		function saveNote(note) {
 			noteService.save(note)
 				.success(function(data) {
-					console.log('removed');
-					listNotes();	
+					console.log(data, 'saved');
 				})
 				.error(function(error) {
 					console.log('Request error: ', error);	

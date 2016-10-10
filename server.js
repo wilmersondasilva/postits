@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var methodOverride = require('method-override')
 
 var models = require('./app/models')
-var post = require('./app/controllers/post')
+var note = require('./app/controllers/note')
 
 var app = express()
 
@@ -22,21 +22,25 @@ app.get('/', function(req, res) {
 	res.render('index')
 })
 
-app.route('/api/posts')
-	.get(post.list)
-	.post(post.create)
+app.route('/api/notes')
+	.get(note.list)
+	.post(note.create)
 
-app.route('/api/posts/:id')
-	.get(post.get)
-	.put(post.update)
-	.delete(post.delete)
+app.route('/api/notes/:id')
+	.get(note.get)
+	.put(note.update)
+	.delete(note.delete)
+
+app.get('*', function(req, res) { // "route 404"
+	res.render('index')
+})
 
 app.listen(app.get('port'), function () {
 
 	models.sequelize.authenticate()
 		.then(function() {
 			console.log('Database: Connection successful')
-			models.sequelize.sync().then(function() {
+			models.sequelize.sync().then(function() { // Update database
 				console.log('Database sync successful')
 			})
 		})
@@ -44,5 +48,5 @@ app.listen(app.get('port'), function () {
 			console.log('Database: Error creating connection: ', error)
 		})
 
-	console.log("Magic happens on port", app.get('port'))
+	console.log("Application running on port ", app.get('port'))
 })

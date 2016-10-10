@@ -1,3 +1,3 @@
 'use strict';
 angular.module('postits')
-	.constant('APIURL', '/api/posts/')
+	.constant('APIURL', '/api/notes/') // Endpoint to 'Note' resource
