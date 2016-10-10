@@ -1,7 +1,7 @@
 html(ng-app='postits')
 	head
 		meta(charset='utf-8')
-		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+		meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1')
 		title Postits
 		link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic')
 		link(rel="stylesheet" href='http://fonts.googleapis.com/css?family=Englebert')
@@ -13,11 +13,15 @@ html(ng-app='postits')
 		.container
 			h1.text-center Postits 
 
-			.clearfix
-				button.float-right(ng-click='addNote()') New PostIt
+			.row
+				form.column.column-60
+					input(type='search' placeholder='Search Postit...' ng-model='noteFilter')
+				button.float-right.column.column-offset-20.column-20(ng-click='addNote()') New PostIt
 
 		.notes
-			.note(ng-repeat='note in notes | orderBy:"-updatedAt"' ng-class='$odd ? "note-type-b" : "note-type-a"')
+			label(ng-if='!notes.length') No postits yet :( <br> Click in 'NEW POSTIT' to start
+			
+			.note(ng-repeat='note in notes | orderBy:"-updatedAt" | filter: noteFilter' ng-class='$odd ? "note-type-b" : "note-type-a"')
 				textarea(
 					class='note-content text-center'
 					placeholder='Type content here'
@@ -33,4 +37,3 @@ html(ng-app='postits')
 		script(src='assets/js/constants.js')
 		script(src='assets/js/services.js')
 		script(src='assets/js/controllers.js')
-

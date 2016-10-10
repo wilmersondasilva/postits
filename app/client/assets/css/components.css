@@ -98,6 +98,10 @@ button {
 	border-color: #606c76;
 }
 
+input[type='search']:focus {
+    border: .1rem solid #606c76;
+}
+
 @media (min-width: 300px) {
 	.notes {
 		width: 235px;
