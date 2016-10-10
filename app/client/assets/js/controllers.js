@@ -3,29 +3,15 @@ angular.module('postits')
 	.controller('homeCtrl', homeCtrl)
 
 	function homeCtrl($scope, noteService) {
-		var _note = {
-			content: 'Type content postit here'
-		}
 
 		listNotes();
 
 		$scope.addNote = function() {
 			$scope.notes = [0].concat($scope.notes);
-			$scope.notes[0] = angular.copy(_note);
+			$scope.notes[0] = {};
 		}
 
-		$scope.updateModel = function(note) {
-			console.log(note.content);
-		}
-
-		$scope.focusNewNote = function(note) {			
-			console.log(note.content);
-			if (note.content == _note.content) {
-				note.content = ''
-			}
-		}
-
-		$scope.blurNewNote = function(note) {
+		$scope.blurNote = function(note) {
 
 			if (!note.content && !note.id) {
 				$scope.notes.splice(0, 1);

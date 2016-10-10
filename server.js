@@ -10,13 +10,13 @@ var app = express()
 // Enviroment Variables
 app.set('port', process.env.PORT || 3000)
 app.set('view engine', 'pug')
-app.set('views', './app/views')
+app.set('views', './app/client')
 
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 app.use(methodOverride())
-app.use(express.static('./app/views'));
+app.use(express.static('./app/client'));
 
 app.get('/', function(req, res) {
 	res.render('index')

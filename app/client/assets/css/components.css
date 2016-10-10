@@ -5,24 +5,26 @@ body {
 }
 
 textarea, textarea:focus {
-    overflow: hidden;
-    min-height: 150px;
-    border: none;    
-    resize: vertical;
-    padding-top: 10px;
-    color: #606c76;
+	overflow: hidden;
+	min-height: 150px;
+	border: none;    
+	resize: none;
+	color: #606c76;
 }
 
 .notes {
 	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .note {
-    min-height: 235px;
+	min-height: 235px;
 	width: 235px;
 
 	padding: 35px;
-	margin-right: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
 	margin-bottom: 20px;
 	float: left;
 	
@@ -87,11 +89,41 @@ textarea, textarea:focus {
 
 .note-content {
 	font-family: Englebert, Arial;
-	line-height: 34px;
+	line-height: 40px;
 	font-size: 24px;
 }
 
 button {
 	background-color: #606c76;
-    border-color: #606c76;
+	border-color: #606c76;
+}
+
+@media (min-width: 300px) {
+	.notes {
+		width: 235px;
+	}
+}
+
+@media (min-width: 660px) {
+	.notes {
+		width: 510px;
+	}
+}
+
+@media (min-width: 871px) {
+	.notes {
+		width: 765px;
+	}
+}
+
+@media (min-width: 1113px) {
+	.notes {
+		width: 1020px;
+	}
+}
+
+@media (min-width: 1400px) {
+	.notes {
+		width: 1275px;
+	}
 }

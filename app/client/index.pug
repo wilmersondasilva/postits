@@ -16,9 +16,14 @@ html(ng-app='postits')
 			.clearfix
 				button.float-right(ng-click='addNote()') New PostIt
 
-		.container.notes
+		.notes
 			.note(ng-repeat='note in notes | orderBy:"-updatedAt"' ng-class='$odd ? "note-type-b" : "note-type-a"')
-				textarea(ng-model='note.content' ng-focus='focusNewNote(note)' ng-blur='blurNewNote(note)').note-content.text-center
+				textarea(
+					class='note-content text-center'
+					placeholder='Type content here'
+					ng-model='note.content'
+					ng-blur='blurNote(note)'
+				)
 			
 
 		//Scripts
