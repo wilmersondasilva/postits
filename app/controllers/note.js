@@ -30,7 +30,6 @@ module.exports = {
 	},
 
 	create(req, res) {
-		console.log(req.body)
 		Note.create(req.body)
 			.then(function(newNote) {
 				res.status(200).json(newNote)
